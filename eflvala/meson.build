@@ -10,7 +10,7 @@ eflvala_lib = shared_library(
     dependencies: efl_deps,
     vala_header: 'eflvala.h',
     vala_vapi: 'eflvala-1.0.vapi',
-    version: meson.project_version(),
+    version: '0.1.0',
     soversion: '0',
     install: true,
     install_dir: [
