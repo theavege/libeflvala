@@ -28,31 +28,31 @@ else
     eina_pc_name = 'eina-0'
 endif
 
-glib_dep = dependency('glib-2.0', version: '>= 2.18')
-gobject_dep = dependency('gobject-2.0', version: '>= 2.18')
-dbus_dep = dependency('dbus-1', version: '>= 1.2.1')
-dbus_glib_dep = dependency('dbus-glib-1', version: '>= 0.74')
+glib_dep = dependency('glib-2.0', version: '>=2.18')
+gobject_dep = dependency('gobject-2.0', version: '>=2.18')
+dbus_dep = dependency('dbus-1', version: '>=1.2.1')
+dbus_glib_dep = dependency('dbus-glib-1', version: '>=0.74')
 evas_dep = dependency('evas')
 ecore_dep = dependency('ecore')
 edje_dep = dependency('edje')
 elementary_dep = dependency('elementary')
 
-# PkgConfigDependency objects whose names match in-tree VAPI files. Meson
-# emits `--pkg <name>` for these, and `--vapidir` makes valac pick our copies.
+# PkgConfigDependency objects whose names match in-tree or Vala VAPI files.
+# Meson emits `--pkg <name>` for these; `--vapidir` makes valac pick our copies.
 efl_pc_deps = [
     glib_dep,
     gobject_dep,
-    dbus_dep,
     dbus_glib_dep,
     evas_dep,
     ecore_dep,
     edje_dep,
 ]
 
-# When the pkg-config name does not match the VAPI name, do not pass the
+# When the pkg-config name does not match a VAPI name, do not pass the
 # PkgConfigDependency to Vala targets — Meson would emit `--pkg <pc name>`
 # and valac would look for a matching .vapi. Feed CFLAGS/LIBS only instead.
-pkg_c_only_names = ['elementary']
+# dbus-1 has no VAPI (dbus-glib-1 does). elementary's VAPI is named elm.
+pkg_c_only_names = ['dbus-1', 'elementary']
 vala_extra = [valac.find_library('elm', dirs: vapi_dir)]
 
 if eina_pc_name == 'eina'
