@@ -230,7 +230,7 @@ namespace Eina
         [CCode (cname = "EINA_ERROR_CONVERT_P_NOT_FOUND")]
         public static Eina.Error P_NOT_FOUND;
         [CCode (cname = "EINA_ERROR_CONVERT_0X_NOT_FOUND")]
-        public static Eina.Error 0X_NOT_FOUND;
+        public static Eina.Error HEX_NOT_FOUND;
         [CCode (cname = "EINA_ERROR_CONVERT_OUTRUN_STRING_LENGTH")]
         public static Eina.Error OUTRUN_STRING_LENGTH;
 
@@ -408,7 +408,7 @@ namespace Eina
         public string? string_get();
         public void string_set(string magic_name);
         [CCode (cname = "eina_magic_fail")]
-        private static void fail_impl(void* data, Magic m, Magic req_m, string file, string func,int line );
+        private static void fail_impl(void* data, Magic m, Magic req_m, string file, string function,int line );
         public static void fail(void* data, Magic m, Magic req_m)
         {
             fail_impl(data,m,req_m, GLib.Log.FILE, GLib.Log.METHOD, GLib.Log.LINE);
@@ -500,7 +500,7 @@ namespace Eina
         [CCode (cname = "Eina_Rbtree_Cmp_Key_Cb")]
         public static delegate int CmpKeyCb(Rbtree node, string key, int length, void* data);
         [CCode (cname = "Eina_Rbtree_Free_Cb")]
-        public static delegate void FreeCb(Rbtree node, void data);
+        public static delegate void FreeCb(Rbtree node, void* data);
         [ReturnsModifiedPointer ()]
         public void inline_insert(Rbtree node, CmpNodeCb cb, void * data);
         [ReturnsModifiedPointer ()]
