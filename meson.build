@@ -6,11 +6,15 @@ project(
     license: 'LGPL-2.1-or-later',
     meson_version: '>= 0.61.0',
     default_options: [
-        'c_std=c99',
+        'c_std=gnu99',
         'warning_level=1',
         'buildtype=debugoptimized',
     ],
 )
+
+# EFL's eina_lock uses pthread_rwlock/spinlock/barrier, which glibc hides
+# under ISO C (-std=c99 / __STRICT_ANSI__). gnu99 + _GNU_SOURCE expose them.
+add_project_arguments('-D_GNU_SOURCE', language: 'c')
 
 valac = meson.get_compiler('vala')
 pkgc = find_program('pkg-config')
