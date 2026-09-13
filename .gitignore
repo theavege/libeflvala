@@ -21,6 +21,7 @@ stamp-h1
 .libs
 *.pc
 *.c
+!eflvala/pager_compat.c
 *.h
 *.o
 *.vala.stamp

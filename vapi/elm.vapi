@@ -824,10 +824,12 @@ public static delegate bool GenlistItemStateGetFunc( Elm.Object obj, string part
 public static delegate void GenlistItemDelFunc( Elm.Object obj );
 
 //=======================================================================
-[CCode (cname = "Elm_Genlist_Item_Class_Func", destroy_function = "")]
+[CCode (cname = "Elm_Gen_Item_Class_Functions", destroy_function = "")]
 public struct GenlistItemClassFunc
 {
+    [CCode (cname = "text_get")]
     public GenlistItemLabelGetFunc label_get;
+    [CCode (cname = "content_get")]
     public GenlistItemIconGetFunc icon_get;
     public GenlistItemStateGetFunc state_get;
     public GenlistItemDelFunc del;

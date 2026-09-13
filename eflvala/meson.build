@@ -2,6 +2,7 @@ eflvala_sources = files(
     'application.vala',
     'genlist.vala',
     'statemachine.vala',
+    'pager_compat.c',
 )
 
 eflvala_lib = shared_library(
