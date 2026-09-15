@@ -21,7 +21,13 @@ pkgc = find_program('pkg-config')
 edje_cc = find_program('edje_cc')
 
 vapi_dir = meson.current_source_dir() / 'vapi'
-add_project_arguments('--vapidir', vapi_dir, language: 'vala')
+add_project_arguments(
+    '--vapidir', vapi_dir,
+    '--fatal-warnings',
+    '--Xcc=-O3',
+    '--enable-checking',
+    language: 'vala',
+)
 
 # pkg-config name for Eina: modern EFL ships eina.pc, older trees used eina-0.
 eina_pc = dependency('eina', required: false)

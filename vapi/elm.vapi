@@ -82,7 +82,8 @@ namespace Coords
 //=======================================================================
 namespace Quicklaunch
 {
-    public static delegate void Postfork_Func ( void* data );
+    [CCode (has_target = false)]
+    public delegate void Postfork_Func ( void* data );
     public void init( [CCode(array_length_pos = 0.9)] string[] args );
     public void sub_init( [CCode (array_length_pos = 0.9)] string[] args );
     public void sub_shutdown();
@@ -424,7 +425,7 @@ public class Layout : Elm.Object
     public void file_set( string file, string group );
     public void theme_set( string clas, string group, string style );
     public void content_set( string swallow, Elm.Object content );
-    public weak Elm.Object edje_get();
+    public unowned Elm.Object edje_get();
     public void sizing_eval();
 }
 
@@ -784,9 +785,9 @@ public class List : Elm.Object
     public void horizontal_mode_set( ListMode mode );
     public ListMode horizontal_mode_get();
     public void always_select_mode_set( bool always_select );
-    public weak Eina.List<ListItem> items_get();
-    public weak ListItem selected_item_get();
-    public weak Eina.List<ListItem> selected_items_get();
+    public unowned Eina.List<ListItem> items_get();
+    public unowned ListItem selected_item_get();
+    public unowned Eina.List<ListItem> selected_items_get();
 }
 
 
@@ -803,7 +804,8 @@ public class Carousel : Elm.Object
 [CCode (cname = "Evas_Object", free_function = "evas_object_del")]
 public class Slider : Elm.Object
 {
-    public static delegate string IndicatorFormatFunc( double val );
+    [CCode (has_target = false)]
+    public delegate string IndicatorFormatFunc( double val );
 
     [CCode (cname = "elm_slider_add")]
     public Slider( Elm.Object? parent );
@@ -834,14 +836,14 @@ public enum GenlistItemFlags
     SUBITEMS,
 }
 
-[CCode (cname = "GenlistItemLabelGetFunc")]
-public static delegate string GenlistItemLabelGetFunc( Elm.Object obj, string part );
-[CCode (cname = "GenlistItemIconGetFunc")]
-public static delegate Elm.Object? GenlistItemIconGetFunc( Elm.Object obj, string part );
-[CCode (cname = "GenlistItemStateGetFunc")]
-public static delegate bool GenlistItemStateGetFunc( Elm.Object obj, string part );
-[CCode (cname = "GenlistItemDelFunc")]
-public static delegate void GenlistItemDelFunc( Elm.Object obj );
+[CCode (cname = "GenlistItemLabelGetFunc", has_target = false)]
+public delegate string GenlistItemLabelGetFunc( Elm.Object obj, string part );
+[CCode (cname = "GenlistItemIconGetFunc", has_target = false)]
+public delegate Elm.Object? GenlistItemIconGetFunc( Elm.Object obj, string part );
+[CCode (cname = "GenlistItemStateGetFunc", has_target = false)]
+public delegate bool GenlistItemStateGetFunc( Elm.Object obj, string part );
+[CCode (cname = "GenlistItemDelFunc", has_target = false)]
+public delegate void GenlistItemDelFunc( Elm.Object obj );
 
 //=======================================================================
 [CCode (cname = "Elm_Gen_Item_Class_Functions", destroy_function = "")]
