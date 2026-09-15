@@ -14,7 +14,9 @@ project(
 
 # EFL's eina_lock uses pthread_rwlock/spinlock/barrier, which glibc hides
 # under ISO C (-std=c99 / __STRICT_ANSI__). gnu99 + _GNU_SOURCE expose them.
-add_project_arguments('-D_GNU_SOURCE', language: 'c')
+# Meson runs valac -C, so --Xcc has no effect (and is a fatal warning);
+# pass -O3 as a C flag instead.
+add_project_arguments('-D_GNU_SOURCE', '-O3', language: 'c')
 
 valac = meson.get_compiler('vala')
 pkgc = find_program('pkg-config')
@@ -24,7 +26,6 @@ vapi_dir = meson.current_source_dir() / 'vapi'
 add_project_arguments(
     '--vapidir', vapi_dir,
     '--fatal-warnings',
-    '--Xcc=-O3',
     '--enable-checking',
     language: 'vala',
 )
