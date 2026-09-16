@@ -63,29 +63,33 @@ public class Delegates : GLib.Object
 public void test_mainloop_idler()
 {
     var delegates = new Delegates();
-    var i = new Idler( delegates.idle_callback );
+    var idler = new Idler( delegates.idle_callback );
     Ecore.MainLoop.begin();
+    assert( idler != null );
 }
 
 public void test_mainloop_idle_enterer()
 {
     var delegates = new Delegates();
-    var i = new IdleEnterer( delegates.idle_enterer );
+    var enterer = new IdleEnterer( delegates.idle_enterer );
     Ecore.MainLoop.begin();
+    assert( enterer != null );
 }
 
 public void test_mainloop_idle_exiter()
 {
     var delegates = new Delegates();
-    var i = new IdleExiter( delegates.idle_exiter );
+    var exiter = new IdleExiter( delegates.idle_exiter );
     Ecore.MainLoop.begin();
+    assert( exiter != null );
 }
 
 public void test_mainloop_timer_timeout()
 {
     var delegates = new Delegates();
-    var i = new Ecore.Timer( 1.0, delegates.timeout );
+    var timer = new Ecore.Timer( 1.0, delegates.timeout );
     Ecore.MainLoop.begin();
+    assert( timer != null );
 }
 
 

@@ -20,7 +20,7 @@ public class MainViewState : EflVala.ViewState
         button.show();
     }
 
-    public void on_configuration(Evas.Object? object, void *event_info)
+    public void on_configuration(Evas.Object? _object, void *_event_info)
     {
         state_machine.emit("to_configuration");
     }
@@ -60,7 +60,7 @@ public class ConfigurationViewState : EflVala.ViewState
 
     }
 
-    public void on_main(Evas.Object? object, void *event_info)
+    public void on_main(Evas.Object? _object, void *_event_info)
     {
         state_machine.emit("to_main");
     }
